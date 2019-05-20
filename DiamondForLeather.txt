@@ -1,0 +1,96 @@
+public class Main {
+
+    static String user = "F";
+    static String row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static String rowForPring = "";
+
+    static int large = 1;
+
+    public static void main(String[] args) {
+
+        diamondForLeather();
+
+    }
+
+    public static void diamondForLeather() {
+
+        symbolSequenceFinder();
+
+        for (int i = 0; i < large; i++) {
+            PyramidBuilder(i);
+        }
+
+        for (int i = large - 2; i >= 0; i--) {
+            PyramidBuilder(i);
+        }
+    }
+
+    public static void PyramidBuilder(int i) {
+
+        printsOnLeftSide(i);
+
+        printsOneLetter(i);
+
+        printsOnMiddleLeftSide(i);
+
+        printsOnMiddleRightSide(i);
+
+        printsSecondLetter(i);
+
+        printsOnRightSide(i);
+
+        System.out.println(rowForPring);
+
+        restartWithBlankString();
+
+    }
+
+    public static void symbolSequenceFinder() {
+        for (int i = 0; i < row.length() - 1; i++) {
+            if (!(row.substring(i, i + 1).equals(user))) {
+                large++;
+            } else if (row.substring(i, i + 1).equals(user)) {
+                System.out.println(row.substring(i, i + 1) + " is " + large + " element.");
+                break;
+            }
+        }
+    }
+
+    public static void printsOneLetter(int i) {
+        rowForPring += row.substring(i, i + 1);
+    }
+
+    public static void printsSecondLetter(int i) {
+        if (large - 1 != large - i - 1) {
+            printsOneLetter(i);
+        }
+    }
+
+    public static void printsOnRightSide(int i) {
+        for (int k = i; k < large - 1; k++) {
+            rowForPring += "-";
+        }
+    }
+
+    public static void printsOnLeftSide(int i) {
+        for (int j = i; j < large - 1; j++) {
+            rowForPring += "-";
+        }
+    }
+
+    public static void printsOnMiddleLeftSide(int i) {
+        for (int m = large - i; m < large; m++) {
+            rowForPring += "-";
+        }
+    }
+
+    public static void printsOnMiddleRightSide(int i) {
+        for (int m = large - i + 1; m < large; m++) {
+            rowForPring += "-";
+        }
+    }
+
+    public static void restartWithBlankString() {
+        rowForPring = "";
+    }
+}
